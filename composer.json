@@ -1,0 +1,13 @@
+{
+    "name": "charlyronin/fb-oauth-test",
+    "description": "testing facebook api",
+    "authors": [
+        {
+            "name": "Carlos R. Zúñiga",
+            "email": "carlosrozuma@gmail.com"
+        }
+    ],
+    "require": {
+        "facebook/graph-sdk": "^5.6"
+    }
+}

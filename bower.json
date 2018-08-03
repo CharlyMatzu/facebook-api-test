@@ -1,0 +1,17 @@
+{
+  "name": "facebook-oauth",
+  "authors": [
+    "Carlos R. Zúñiga <carlosrozuma@gmail.com>"
+  ],
+  "description": "test",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
