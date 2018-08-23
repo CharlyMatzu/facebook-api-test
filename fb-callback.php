@@ -10,7 +10,7 @@ try {
     $fb = new Facebook\Facebook([
         'app_id' => '1902563839808600',
         'app_secret' => '81d0249f8752a9b856736b312b230f2c',
-        'default_graph_version' => 'v2.2',
+        'default_graph_version' => 'v3.1',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
     echo "ERROR: ".$e->getMessage();
