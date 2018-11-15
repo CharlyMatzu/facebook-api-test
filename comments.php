@@ -27,6 +27,9 @@ function init(){
     echo '<a href="' . htmlspecialchars($loginUrl) . '">Iniciar sesion con facebook</a>';
 }
 
+
+
+
 /**
  * Obteniendo datos
  */
@@ -37,8 +40,10 @@ function load(){
     $response = null;
     try {
         // Returns a `Facebook\FacebookResponse` object
-        //Get public data
-        $response = $fb->get('/me?fields=id,email,picture.width(200).height(200),first_name,last_name', $token);
+        $response = $fb->get(
+            '/2143932362292834/comments',
+            $token
+        );
         
     } catch(Facebook\Exceptions\FacebookResponseException $e) {
         echo 'Graph returned an error: ' . $e->getMessage();
@@ -48,39 +53,16 @@ function load(){
         exit;
     }
 
+    
     try {
         //puede usarse como array asociativo o como objeto
-        $user = $response->getGraphUser();
+        $graphNode = $response->getGraphUser();
     } catch (\Facebook\Exceptions\FacebookSDKException $e) {
         echo 'Facebook SDK returned an error: ' . $e->getMessage();
         exit;
     }
 
-    //Saving data in a txt
-    $userEmail = explode("@", $user->getEmail());
+    
 
-    if (!file_exists(__DIR__."/users")) {
-        mkdir(__DIR__."/users", 0777, true);
-    }
-    //http://php.net/manual/es/function.file-put-contents.php
-    file_put_contents(__DIR__."/users/".$userEmail[0].".txt", print_r($user, true));
-    file_put_contents(__DIR__."/users/".$userEmail[0].".txt", "TOKEN: $token", FILE_APPEND);
-
-    echo "<h1>Iniciado sesion</h1>";
-    echo "<br>";
-    echo "TOKEN: ".$token;
-    echo "<br><br>";
-    echo "<h3>Usuario</h3>";
-    echo "ID: ".$user->getId();
-    echo "<br>";
-//    echo "Nombre: ".$user['name'];
-//    echo "<br>";
-    echo "Nombre: ".$user['first_name']." ".$user['last_name'];
-    echo "<br>";
-    echo "Email:".$user->getEmail();
-    echo "<br>";
-    echo '<img src="'.$user->getPicture()->getUrl().'"/>';
-    echo "<br>";
-    echo '<a href="logout.php">Cerrar sesion</a>';
 
 }

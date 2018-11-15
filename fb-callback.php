@@ -1,21 +1,8 @@
 <?php
 
-require_once "vendor/autoload.php";
-// Sesion activa requerida
-if(!session_id()) {
-    session_start();
-}
+include_once "config.php";
 
-try {
-    $fb = new Facebook\Facebook([
-        'app_id' => '1902563839808600',
-        'app_secret' => '81d0249f8752a9b856736b312b230f2c',
-        'default_graph_version' => 'v3.1',
-    ]);
-} catch (\Facebook\Exceptions\FacebookSDKException $e) {
-    echo "ERROR: ".$e->getMessage();
-    exit;
-}
+
 
 $helper = $fb->getRedirectLoginHelper();
 
@@ -58,7 +45,7 @@ echo '<h3>Metadata</h3>';
 var_dump($tokenMetadata);
 
 // Validation (these will throw FacebookSDKException's when they fail)
-$tokenMetadata->validateAppId('1902563839808600'); // Replace {app-id} with your app id
+$tokenMetadata->validateAppId( APP_ID ); // Replace {app-id} with your app id
 // If you know the user ID this access token belongs to, you can validate it here
 //$tokenMetadata->validateUserId('123');
 $tokenMetadata->validateExpiration();
@@ -80,4 +67,4 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
-header('Location: http://localhost/otros/facebook-oauth/');
+header('Location: ' . HOST);
